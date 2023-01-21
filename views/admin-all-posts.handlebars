@@ -1,0 +1,6 @@
+{{!--shows all the user's posts on the /dashboard route --}}
+<a href="/dashboard/create">Create Post</a>
+<h1>My posts</h1>
+{{#each posts}}
+{{> post this}}
+{{/each}}
