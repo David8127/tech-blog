@@ -10,10 +10,20 @@ router.get("/", async (req, res) => {
   if (req.session.loggedIn) {
     username = req.session.username;
   }
+  const postsData = await Post.findAll ({
+    order: [["createdAt", "DESC"]],
+    include: [
+      {
+        model: User,
+        attributes: ["username"]
+      },
+    ],
+  });
+  const posts = postsData.map((post) => post.get ({ plain: true}));
   // TODO - retrieve all posts from the database
   // render the homepage template with the posts retrieved from the database
   // refer to homepage.handlebars write the code to display the posts
-  res.render("homepage", { username });
+  res.render("homepage", { layout: "dashboard", username, posts });
 });
 
 // TODO - create a GET route for getting a single post with its id

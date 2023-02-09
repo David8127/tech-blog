@@ -7,7 +7,7 @@ const helpers = require('./utils/helpers');
 const sequelize = require('./config');
 const routes = require('./controllers');
 
-exphbs.hotreload()
+exphbs.hotreload();
 
 const app = express();
 const PORT = process.env.PORT || 3001;

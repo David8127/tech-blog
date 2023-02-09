@@ -4,3 +4,8 @@
 {{#if username}}
 <p>Hello, {{username}}</p>
 {{/if}}
+
+<h2>Here's what people are buzzing about:</h2>
+{{#each posts}}
+{{> post this}}
+{{/each}}
