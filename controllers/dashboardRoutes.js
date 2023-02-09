@@ -32,7 +32,20 @@ router.get("/create", withAuth, async (req, res) => {
   res.render("admin-create-post", { layout: "dashboard" });
 });
 
+router.post("/create", withAuth, async (req, res) => {
+  try {
+    console.log()
+    await Post.create({
+      title: req.body.title,
+      body: req.body.body,
+      userId: req.session.userId,
+    })
+    res.redirect("/dashboard");
+  } catch (err) {
+    res.status(500).json(err);
+  }
 
+});
 
 // TODO - create logic for the GET route for /edit/:id that renders the edit post page
 // It should display a form for editing an existing post

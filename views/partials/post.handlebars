@@ -1,20 +1,32 @@
 <style>
-    .post{
+    .post-card {
         border: 1px solid rgb(139, 177, 189);
         border-radius: 15px;
         padding: 10px;
         margin: 10px;
     }
 
-    .post h2 {
+    .post-card h2 {
         color: rgb(99, 29, 99);
     }
-
 </style>
 
-<div class="post">
-    <h2>{{title}}</h2>
-    <p>{{body}}</p>
-    <p>Posted by {{user.username}}</p>
-    <p>Posted on {{format_date createdAt}}</p>
+<div class="post-card">
+    <div class="post-main">
+        <h2>{{title}}</h2>
+        <p>{{body}}</p>
+        <p>Posted by {{user.username}}</p>
+        <p>Posted on {{format_date createdAt}}</p>
+    </div>
+    <div class="comment-section">
+        <h4>Comments:</h4>
+        {{!-- add list of comments via handlebars --}}
+    </div>
+    <div>
+        <p>Share your thoughts:</p>
+        <textarea name="create-comment" id="create-comment" cols="0" rows="0"></textarea>
+        <div class="comment_edit_options">
+            <button id="makeComment" type="submit" data-action="submit">Submit</button>
+        </div>
+    </div>
 </div>
