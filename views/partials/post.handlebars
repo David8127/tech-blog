@@ -21,12 +21,16 @@
     <div class="comment-section">
         <h4>Comments:</h4>
         {{!-- add list of comments via handlebars --}}
-    </div>
-    <div>
-        <p>Share your thoughts:</p>
-        <textarea name="create-comment" id="create-comment" cols="0" rows="0"></textarea>
-        <div class="comment_edit_options">
-            <button id="makeComment" type="submit" data-action="submit">Submit</button>
+        <div id="comments" class="postscomments">
+            {{#each comments }}
+            {{>comment this }}
+            {{/each}}
+        </div>
+        <div>
+            <p>Share your thoughts:</p>
+            <textarea name="create-comment" id="create-comment" cols="0" rows="0"></textarea>
+            <div class="comment_edit_options">
+                <button id="makeComment" type="submit" data-action="submit">Submit</button>
+            </div>
         </div>
     </div>
-</div>

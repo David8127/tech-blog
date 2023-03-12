@@ -22,10 +22,45 @@ const withAuth = require('../../utils/auth');
 
 // TODO - create a PUT route for updating a post's title or body
 // This should be a protected route, so you'll need to use the withAuth middleware
-
+router.put("/update/:id", withAuth, async (req, res) => {
+    try {
+        const data = Post.update({
+            title: req.body.title,
+            body: req.body.body
+        },  
+        {
+            where: {
+                id: req.body.postID
+            }
+        })
+        if (!data) {
+            res.status(404).json({message: "Could not find a post with this id"});
+        } else {
+            res.status(200).json({message: "Succesfully updated post!"});
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 // TODO - create a DELETE route for deleting a post with a specific id
 // This should be a protected route, so you'll need to use the withAuth middleware
+router.delete("/delete/:id", async (req, res) => {
+    try {
+        const deletePost = await Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        if (!deletePost) {
+            res.status(404).json({message: "Could not find post with this id"});
+        } else {
+            res.status(200).json({message: "Post deleted!"});
+        }
 
+    } catch (error) {
+        res.status(500).json(error)
+    }
+});
 
 module.exports = router;
